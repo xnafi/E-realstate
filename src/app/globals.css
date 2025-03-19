@@ -19,3 +19,41 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+@layer utilities {
+  .headings {
+    @apply text-5xl font-bold  mb-12;
+  }
+  .sub-heading {
+    @apply text-base md:text-xl lg:text-4xl font-semibold uppercase text-[#D3D3D3];
+  }
+  .primary-text {
+    @apply text-sm md:text-base font-bold text-[#D3D3D3];
+  }
+  .primary_color {
+    @apply text-[#FFFFFF];
+  }
+  .secondary_color {
+    @apply text-[#DD4242];
+  }
+  .container{
+    @apply max-w-[1440px] mx-auto px-4 lg:px-4 py-4 lg:py-12;
+  }
+  
+  .para-text {
+    @apply text-gray-600 text-sm;
+  }
+  .banner-para-text {
+    @apply text-sm sm:text-base md:text-lg lg:text-xl mt-4;
+  }
+  .bnr-header-text {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold;
+  }
+  .title-header-text {
+    @apply text-3xl md:text-4xl font-bold;
+  }
+ 
+}
+
+.text_head {
+  line-height: 5rem;
+}
