@@ -25,7 +25,7 @@ const Navbar = () => {
   return (
     <header className="border-b max-w-[1400px] mx-auto">
       {/* Top Bar */}
-      <div className="flex flex-col lg:flex-row items-center justify-between px-6 py-6 text-sm text-gray-700">
+      <div className="flex flex-col lg:flex-row items-center justify-between px-6 py-8 text-sm text-gray-700">
         {/* Logo */}
         <div className="text-3xl font-bold text-blue-900 flex items-center gap-2 mb-4 lg:mb-0">
           <HiOutlineLocationMarker className="text-blue-600 text-4xl" />
@@ -38,7 +38,7 @@ const Navbar = () => {
           <div className="flex items-center justify-center sm:justify-start gap-3">
             <FaPhoneAlt className="text-blue-600 text-2xl" />
             <div className="flex flex-col text-left">
-              <span className="font-semibold text-blue-900 mb-1">1 800 987 6543</span>
+              <span className="font-semibold text-blue-900 mb-2">1 800 987 6543</span>
               <span className="text-gray-500">info@houzez.com</span>
             </div>
           </div>
@@ -47,7 +47,7 @@ const Navbar = () => {
           <div className="flex items-center justify-center sm:justify-start gap-3">
             <HiOutlineLocationMarker className="text-blue-600 text-2xl" />
             <div className="flex flex-col text-left">
-              <span className="font-semibold text-blue-900 mb-1">Oceanview Hall</span>
+              <span className="font-semibold text-blue-900 mb-2">Oceanview Hall</span>
               <span className="text-gray-500">Miami, FL 33141</span>
             </div>
           </div>
@@ -56,7 +56,7 @@ const Navbar = () => {
           <div className="flex items-center justify-center sm:justify-start gap-3">
             <FiClock className="text-blue-600 text-2xl" />
             <div className="flex flex-col text-left">
-              <span className="font-semibold text-blue-900 mb-1">9 am to 6 pm</span>
+              <span className="font-semibold text-blue-900 mb-2">9 am to 6 pm</span>
               <span className="text-gray-500">Monday to Friday</span>
             </div>
           </div>
