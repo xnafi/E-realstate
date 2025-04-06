@@ -8,17 +8,24 @@ import {
   FaPinterestP,
   FaYoutube,
   FaYelp,
-  FaChevronDown
+  FaChevronDown,
+  FaBars,
+  FaTimes
 } from 'react-icons/fa';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { FiClock } from 'react-icons/fi';
 import Link from 'next/link';
+import { useState } from 'react';
 
 const Navbar = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navItems = ['Home', 'Properties', 'Property', 'Realtor', 'Others'];
+
   return (
-    <header className=" border-b max-w-[1400px] mx-auto">
+    <header className="border-b max-w-[1400px] mx-auto">
       {/* Top Bar */}
-      <div className="flex flex-col lg:flex-row items-center justify-between px-6 py-8 text-sm text-gray-700">
+      <div className="flex flex-col lg:flex-row items-center justify-between px-6 py-6 text-sm text-gray-700">
         {/* Logo */}
         <div className="text-3xl font-bold text-blue-900 flex items-center gap-2 mb-4 lg:mb-0">
           <HiOutlineLocationMarker className="text-blue-600 text-4xl" />
@@ -29,27 +36,27 @@ const Navbar = () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center lg:text-left">
           {/* Phone & Email */}
           <div className="flex items-center justify-center sm:justify-start gap-3">
-            <FaPhoneAlt className="text-blue-600 text-3xl" />
+            <FaPhoneAlt className="text-blue-600 text-2xl" />
             <div className="flex flex-col text-left">
-              <span className="font-semibold text-blue-900 mb-2">1 800 987 6543</span>
+              <span className="font-semibold text-blue-900 mb-1">1 800 987 6543</span>
               <span className="text-gray-500">info@houzez.com</span>
             </div>
           </div>
 
           {/* Address */}
           <div className="flex items-center justify-center sm:justify-start gap-3">
-            <HiOutlineLocationMarker className="text-blue-600 text-3xl" />
+            <HiOutlineLocationMarker className="text-blue-600 text-2xl" />
             <div className="flex flex-col text-left">
-              <span className="font-semibold text-blue-900 mb-2">Oceanview Hall</span>
+              <span className="font-semibold text-blue-900 mb-1">Oceanview Hall</span>
               <span className="text-gray-500">Miami, FL 33141</span>
             </div>
           </div>
 
           {/* Hours */}
           <div className="flex items-center justify-center sm:justify-start gap-3">
-            <FiClock className="text-blue-600 text-3xl" />
+            <FiClock className="text-blue-600 text-2xl" />
             <div className="flex flex-col text-left">
-              <span className="font-semibold text-blue-900 mb-2">9 am to 6 pm</span>
+              <span className="font-semibold text-blue-900 mb-1">9 am to 6 pm</span>
               <span className="text-gray-500">Monday to Friday</span>
             </div>
           </div>
@@ -68,10 +75,39 @@ const Navbar = () => {
 
       {/* Navigation Bar */}
       <nav className="bg-blue-900 text-white text-sm font-semibold">
-        <div className="flex items-center justify-between px-6 py-3 flex-wrap gap-4">
-          {/* Nav Items with Dropdowns */}
-          <div className="flex items-center gap-6 flex-wrap">
-            {['Home', 'Properties', 'Property', 'Realtor', 'Others'].map((item, i) => (
+        <div className="flex items-center justify-between px-6 py-3 lg:hidden">
+          <span className="text-lg font-bold">Menu</span>
+          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            {mobileMenuOpen ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
+          </button>
+        </div>
+
+        {/* Mobile Nav */}
+        {mobileMenuOpen && (
+          <div className="px-6 py-4 flex flex-col gap-4 lg:hidden bg-blue-900">
+            {navItems.map((item, i) => (
+              <div key={i} className="flex items-center justify-between">
+                <span className="hover:underline">{item}</span>
+                <FaChevronDown className="text-xs" />
+              </div>
+            ))}
+            <Link href="#" className="hover:underline">Contact</Link>
+            <div className="flex flex-col gap-2 mt-4">
+              <Link href="#" className="hover:underline">Login</Link>
+              <Link href="#" className="hover:underline">Register</Link>
+              <Link href="#" className="hover:underline">Favorites <span className="text-xs">(0)</span></Link>
+              <button className="bg-sky-500 hover:bg-sky-600 text-white font-semibold px-4 py-2 rounded">
+                Create a Listing
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Desktop Nav */}
+        <div className="hidden lg:flex items-center justify-between px-6 py-3">
+          {/* Left Nav */}
+          <div className="flex items-center gap-6">
+            {navItems.map((item, i) => (
               <div key={i} className="relative group">
                 <button className="hover:underline relative flex items-center gap-1">
                   {item}
@@ -91,8 +127,8 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Right-side Actions */}
-          <div className="flex items-center gap-4 flex-wrap">
+          {/* Right Nav */}
+          <div className="flex items-center gap-4">
             <Link href="#" className="hover:underline">Login</Link>
             <Link href="#" className="hover:underline">Register</Link>
             <Link href="#" className="hover:underline">Favorites <span className="text-xs">(0)</span></Link>
