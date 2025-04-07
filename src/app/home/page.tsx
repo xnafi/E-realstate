@@ -3,6 +3,7 @@ import ExploreCities from "@/components/view/ExploreCities";
 import InquiryForm from "@/components/view/InquiryForm";
 import Lifestyles from "@/components/view/Lifestyles";
 import NewsLetter from "@/components/view/NewsLetter";
+import PartnerLogo from "@/components/view/PartnerLogo";
 import Welcome from "@/components/view/Welcome";
 
 export default function HomePage() {
@@ -13,6 +14,7 @@ export default function HomePage() {
       <InquiryForm />
       <Lifestyles />
       <ExploreCities />
+      <PartnerLogo />
       <NewsLetter />
       </div>
     );
