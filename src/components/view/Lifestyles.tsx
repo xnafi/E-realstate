@@ -48,7 +48,7 @@ const Card = ({
   properties: string;
   image: string;
 }) => (
-  <div className="relative group overflow-hidden rounded-md h-full">
+  <div className="relative group overflow-hidden rounded-md h-full w-full">
     <Image
       src={image}
       alt={title}
@@ -66,13 +66,13 @@ const Card = ({
 
 const Lifestyles = () => {
   return (
-    <section className="py-16 px-4">
+    <section className="py-12 px-4 md:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
+        <div className="text-center mb-10 md:mb-12">
           <h2 className="title-header-text mb-4">
             Explore Lifestyles
           </h2>
-          <p className="title-para-text mb-12">
+          <p className="title-para-text">
             Lorem ipsum dolor sit amet, consectetur adipiscing
           </p>
         </div>
@@ -81,13 +81,14 @@ const Lifestyles = () => {
           {/* Left Column */}
           <div className="w-full lg:w-1/2 flex flex-col gap-6">
             {/* Top: Apartment */}
-            <div className="h-[260px] sm:h-[300px]">
+            <div className="h-[220px] sm:h-[250px] md:h-[280px] lg:h-[300px]">
               <Card {...lifestyles.leftTop} />
             </div>
+
             {/* Bottom: Single Family + Studio */}
-            <div className="flex gap-6 h-[260px] sm:h-[300px]">
+            <div className="flex flex-col sm:flex-row gap-6 h-[220px] sm:h-[250px] md:h-[280px] lg:h-[300px]">
               {lifestyles.leftBottom.map((item, idx) => (
-                <div key={idx} className="w-1/2">
+                <div key={idx} className="w-full sm:w-1/2">
                   <Card {...item} />
                 </div>
               ))}
@@ -97,15 +98,16 @@ const Lifestyles = () => {
           {/* Right Column */}
           <div className="w-full lg:w-1/2 flex flex-col gap-6">
             {/* Top: Office + Shop */}
-            <div className="flex gap-6 h-[260px] sm:h-[300px]">
+            <div className="flex flex-col sm:flex-row gap-6 h-[220px] sm:h-[250px] md:h-[280px] lg:h-[300px]">
               {lifestyles.rightTop.map((item, idx) => (
-                <div key={idx} className="w-1/2">
+                <div key={idx} className="w-full sm:w-1/2">
                   <Card {...item} />
                 </div>
               ))}
             </div>
+
             {/* Bottom: Villa */}
-            <div className="h-[260px] sm:h-[300px]">
+            <div className="h-[220px] sm:h-[250px] md:h-[280px] lg:h-[300px]">
               <Card {...lifestyles.rightBottom} />
             </div>
           </div>
