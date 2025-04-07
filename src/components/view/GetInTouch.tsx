@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
 
@@ -28,9 +30,7 @@ const GetInTouch = () => {
   return (
     <section className="bg-[#f8f9fb] py-10 sm:py-14 md:py-16 lg:py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="title-header-text mb-4">
-          Get In Touch With Us
-        </h2>
+        <h2 className="title-header-text mb-4">Get In Touch With Us</h2>
         <p className="title-para-text mb-12">
           Lorem ipsum dolor sit amet, consectetur adipiscing
         </p>
@@ -39,9 +39,10 @@ const GetInTouch = () => {
           {agents.map((agent, index) => (
             <div
               key={index}
-              className="bg-white p-5 sm:p-6 lg:p-8 rounded-md shadow-sm text-center flex flex-col items-center"
+              className="bg-white p-5 sm:p-6 lg:p-8 rounded-md shadow-sm text-center flex flex-col items-center transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-md focus-within:scale-105 focus-within:shadow-md"
+              tabIndex={0}
             >
-              <div className="w-24 h-24 sm:w-28 sm:h-28 relative rounded-full overflow-hidden mb-4">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 relative rounded-full overflow-hidden mb-4 ring-1 ring-gray-200">
                 <Image
                   src={agent.img}
                   alt={agent.name}
