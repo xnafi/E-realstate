@@ -5,6 +5,7 @@ import InquiryForm from "@/components/view/InquiryForm";
 import Lifestyles from "@/components/view/Lifestyles";
 import NewsLetter from "@/components/view/NewsLetter";
 import PartnerLogo from "@/components/view/PartnerLogo";
+import Properties from "@/components/view/Properties";
 import Welcome from "@/components/view/Welcome";
 
 export default function HomePage() {
@@ -14,6 +15,7 @@ export default function HomePage() {
       <Welcome />
       <InquiryForm />
       <Lifestyles />
+      <Properties />
       <ExploreCities />
       <GetInTouch />
       <PartnerLogo />
