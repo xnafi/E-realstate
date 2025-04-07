@@ -68,10 +68,10 @@ const FeaturedListings = () => {
   return (
     <section className="bg-white py-12 px-4">
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-2">
+        <h2 className="title-header-text mb-4">
           Check Our Featured Listings
         </h2>
-        <p className="text-gray-500 mb-6">
+        <p className="title-para-text mb-12">
           Lorem ipsum dolor sit amet, consectetur adipiscing
         </p>
 
@@ -115,7 +115,7 @@ const FeaturedListings = () => {
                   {listing.price}
                 </div>
 
-                <div className="absolute bottom-3 right-3 flex gap-2 text-white text-base">
+                <div className="absolute bottom-3 right-3 flex gap-2 text-white text-2xl">
                   <FaExpand className="cursor-pointer hover:text-gray-300" />
                   <FaHeart className="cursor-pointer hover:text-gray-300" />
                   <FaShareAlt className="cursor-pointer hover:text-gray-300" />
@@ -123,28 +123,28 @@ const FeaturedListings = () => {
               </div>
 
               <div className="p-4">
-                <h3 className="text-lg font-medium text-gray-800 mb-1">
+                <h3 className="text-start font-semibold text-gray-800 mb-1">
                   {listing.title}
                 </h3>
-                <p className="text-sm text-gray-500">{listing.address}</p>
+                <p className="text-start text-sm text-gray-500">{listing.address}</p>
 
                 <div className="flex justify-between items-center mt-4 pt-4 border-t text-sm text-gray-600">
                   <div className="flex flex-col items-center border-r pr-4">
-                    <div className="flex items-center gap-2 text-lg">
+                    <div className="flex items-center gap-3 text-2xl">
                       <FaBed /> {listing.bedrooms}
                     </div>
                     <span className="text-xs">Bedrooms</span>
                   </div>
 
                   <div className="flex flex-col items-center border-r pr-4">
-                    <div className="flex items-center gap-2 text-lg">
+                    <div className="flex items-center gap-3 text-2xl">
                       <FaBath /> {listing.bathrooms}
                     </div>
                     <span className="text-xs">Bathrooms</span>
                   </div>
 
                   <div className="flex flex-col items-center">
-                    <div className="flex items-center gap-2 text-lg">
+                    <div className="flex items-center gap-3 text-2xl">
                       <FaRulerCombined /> {listing.area}
                     </div>
                     <span className="text-xs">Sq Ft</span>
