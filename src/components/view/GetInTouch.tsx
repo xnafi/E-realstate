@@ -26,20 +26,22 @@ const agents = [
 
 const GetInTouch = () => {
   return (
-    <section className="bg-[#f8f9fb] py-16">
-      <div className="max-w-6xl mx-auto px-4 text-center">
-        <h2 className="text-3xl font-semibold text-gray-800 mb-2">Get In Touch With Us</h2>
-        <p className="text-gray-500 mb-10">
+    <section className="bg-[#f8f9fb] py-10 sm:py-14 md:py-16 lg:py-20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 className="title-header-text mb-4">
+          Get In Touch With Us
+        </h2>
+        <p className="title-para-text mb-12">
           Lorem ipsum dolor sit amet, consectetur adipiscing
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {agents.map((agent, index) => (
             <div
               key={index}
-              className="bg-white p-6 rounded-md shadow-sm text-center flex flex-col items-center"
+              className="bg-white p-5 sm:p-6 lg:p-8 rounded-md shadow-sm text-center flex flex-col items-center"
             >
-              <div className="w-24 h-24 relative rounded-full overflow-hidden mb-4">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 relative rounded-full overflow-hidden mb-4">
                 <Image
                   src={agent.img}
                   alt={agent.name}
@@ -47,17 +49,19 @@ const GetInTouch = () => {
                   className="object-cover"
                 />
               </div>
-              <h3 className="text-[#2c9bf3] font-semibold">{agent.name}</h3>
-              <p className="text-gray-700 text-sm font-medium mt-1 mb-3">
+              <h3 className="text-[#2c9bf3] text-base sm:text-lg font-semibold">
+                {agent.name}
+              </h3>
+              <p className="text-gray-700 text-xs sm:text-sm md:text-sm font-medium mt-1 mb-3 px-1">
                 {agent.title}
               </p>
-              <p className="text-gray-500 text-sm mb-4">
+              <p className="text-gray-500 text-xs sm:text-sm mb-4 px-2">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Phasellus porta justo eget risus consectetur,...
               </p>
               <a
                 href="#"
-                className="text-[#2c9bf3] font-medium text-sm hover:underline"
+                className="text-[#2c9bf3] text-sm font-medium hover:underline"
               >
                 View Profile
               </a>

@@ -72,7 +72,7 @@ const Lifestyles = () => {
           <h2 className="title-header-text mb-4">
             Explore Lifestyles
           </h2>
-          <p className="title-para-text">
+          <p className="title-para-text mb-12">
             Lorem ipsum dolor sit amet, consectetur adipiscing
           </p>
         </div>
