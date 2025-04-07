@@ -41,8 +41,8 @@ const InquiryForm = () => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10 py-16 lg:py-20 flex flex-col lg:flex-row gap-12">
         {/* Left Content */}
         <div className="w-full lg:w-3/5 text-white space-y-10">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold">
-            Why Houzez Is The Perfect Choice?
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold lg:mt-6">
+            Why E-Realstate Is The Perfect Choice?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-base md:text-lg">
             <div>
@@ -71,7 +71,7 @@ const InquiryForm = () => {
         <div className="w-full lg:w-2/5 bg-white p-6 sm:p-8 rounded-md shadow-md">
           <h3 className="text-xl font-semibold text-gray-800 mb-1">Real Estate Inquiry Form</h3>
           <p className="text-sm text-gray-500 mb-6">
-            Design custom lead capture forms that integrate with the Houzez CRM
+            Design custom lead capture forms that integrate with the E-Realstate CRM
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">

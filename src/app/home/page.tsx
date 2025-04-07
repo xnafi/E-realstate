@@ -1,5 +1,6 @@
 import Banner from "@/components/view/Banner";
 import ExploreCities from "@/components/view/ExploreCities";
+import GetInTouch from "@/components/view/GetInTouch";
 import InquiryForm from "@/components/view/InquiryForm";
 import Lifestyles from "@/components/view/Lifestyles";
 import NewsLetter from "@/components/view/NewsLetter";
@@ -14,6 +15,7 @@ export default function HomePage() {
       <InquiryForm />
       <Lifestyles />
       <ExploreCities />
+      <GetInTouch />
       <PartnerLogo />
       <NewsLetter />
       </div>
