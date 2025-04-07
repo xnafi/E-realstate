@@ -36,7 +36,7 @@ const Navbar = () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center lg:text-left">
           {/* Phone & Email */}
           <div className="flex items-center justify-center sm:justify-start gap-3">
-            <FaPhoneAlt className="text-blue-600 text-2xl" />
+            <FaPhoneAlt className="text-blue-600 text-3xl mt-2" />
             <div className="flex flex-col text-left">
               <span className="font-semibold text-blue-900 mb-2">1 800 987 6543</span>
               <span className="text-gray-500">info@houzez.com</span>
@@ -45,7 +45,7 @@ const Navbar = () => {
 
           {/* Address */}
           <div className="flex items-center justify-center sm:justify-start gap-3">
-            <HiOutlineLocationMarker className="text-blue-600 text-2xl" />
+            <HiOutlineLocationMarker className="text-blue-600 text-3xl mt-2" />
             <div className="flex flex-col text-left">
               <span className="font-semibold text-blue-900 mb-2">Oceanview Hall</span>
               <span className="text-gray-500">Miami, FL 33141</span>
@@ -54,7 +54,7 @@ const Navbar = () => {
 
           {/* Hours */}
           <div className="flex items-center justify-center sm:justify-start gap-3">
-            <FiClock className="text-blue-600 text-2xl" />
+            <FiClock className="text-blue-600 text-3xl mt-2" />
             <div className="flex flex-col text-left">
               <span className="font-semibold text-blue-900 mb-2">9 am to 6 pm</span>
               <span className="text-gray-500">Monday to Friday</span>
