@@ -40,6 +40,18 @@ const properties = [
     img: "https://i.postimg.cc/W3mYHXVg/reflection-castle-pond-autumn.jpg",
     featured: false,
   },
+  {
+    id: 4,
+    title: "Villa With Pool For Sale",
+    address: "3606 NW 5 Ave, Miami, FL 33127, USA",
+    price: "$3,900,000",
+    sqft: "$17,500/sq ft",
+    bed: 5,
+    bath: 2,
+    area: 3450,
+    img: "https://i.postimg.cc/W3mYHXVg/reflection-castle-pond-autumn.jpg",
+    featured: false,
+  },
 ];
 
 const Properties = () => {
@@ -57,11 +69,11 @@ const Properties = () => {
 
   return (
     <section className="bg-[#f9f9f9] py-12 px-4">
-      <div className="max-w-7xl mx-auto text-center mb-8">
-        <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-2">
+      <div className="max-w-6xl mx-auto text-center mb-8">
+        <h2 className="title-header-text mb-4">
           Properties For Sale
         </h2>
-        <p className="text-gray-500 mb-6">
+        <p className="title-para-text mb-12">
           Lorem ipsum dolor sit amet, consectetur adipiscing
         </p>
         <div className="flex justify-end space-x-4 text-blue-500 text-sm font-medium pr-4">
@@ -74,7 +86,7 @@ const Properties = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {visibleCards.map((property) => (
           <div key={property.id} className="bg-white rounded-md shadow-sm overflow-hidden">
             <div className="relative h-64">
@@ -86,7 +98,7 @@ const Properties = () => {
                 className="rounded-t-md"
               />
 
-              <div className="absolute top-2 left-2 flex gap-2">
+              <div className="absolute top-2 right-2 flex gap-2">
                 {property.featured && (
                   <span className="bg-green-500 text-white text-xs px-2 py-1 rounded">
                     FEATURED
@@ -102,7 +114,7 @@ const Properties = () => {
                 <p className="text-sm">{property.sqft}</p>
               </div>
 
-              <div className="absolute bottom-2 right-2 flex gap-2 text-white text-sm">
+              <div className="absolute bottom-2 right-2 flex gap-2 text-white text-2xl">
                 <FaExpand className="cursor-pointer hover:text-gray-300" />
                 <FaShareAlt className="cursor-pointer hover:text-gray-300" />
                 <FaHeart className="cursor-pointer hover:text-gray-300" />
@@ -114,14 +126,30 @@ const Properties = () => {
               <p className="text-gray-500 text-sm">{property.address}</p>
 
               <div className="flex justify-between mt-4 text-gray-700 text-sm border-t pt-4">
-                <div className="flex items-center gap-1">
-                  <FaBed /> {property.bed} <span className="text-xs ml-1">Bedrooms</span>
+                <div className="flex-col items-center gap-1 border-r pr-4">
+                    <div className="flex items-center gap-3 text-2xl">
+
+                  <FaBed /> {property.bed}
+                    </div>
+                  <div>
+                  <span className="text-xs mt-2">Bedrooms</span>
+                    </div>  
                 </div>
-                <div className="flex items-center gap-1">
-                  <FaBath /> {property.bath} <span className="text-xs ml-1">Bathrooms</span>
+                <div className="flex-col items-center gap-1 border-r pr-4">
+                <div className="flex items-center gap-3 text-2xl">
+                  <FaBath /> {property.bath} 
+                  </div>
+                  <div>
+                  <span className="text-xs mt-2">Bathrooms</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <FaRulerCombined /> {property.area} <span className="text-xs ml-1">Sq Ft</span>
+                </div>
+                <div className="flex-col items-center gap-1 ">
+                <div className="flex items-center gap-3 text-2xl">  
+                  <FaRulerCombined /> {property.area} 
+                  </div> 
+                  <div> 
+                  <span className="text-xs mt-2">Sq Ft</span>
+                  </div>
                 </div>
               </div>
             </div>
