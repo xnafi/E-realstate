@@ -38,7 +38,7 @@ const listings = [
 ];
 
 export default function PropertyPage({ params }: { params: { id: string } }) {
-//   const property = listings.find((item) => item.id === parseInt(params.id));
+
   // Find the property based on the dynamic route ID
   const property = listings.find((item) => item.id === parseInt(params.id, 10));
 
