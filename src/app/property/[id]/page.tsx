@@ -2,6 +2,7 @@
 import AdditionalDetails from "@/components/view/AdditionalDetails";
 import FloorPlans from "@/components/view/FloorPlans";
 import PropertyDetails from "@/components/view/PropertyDetails";
+import PropertyVideo from "@/components/view/PropertyVideo";
 import TourSchedule from "@/components/view/TourSchedule";
 import Image from "next/image";
 import {
@@ -109,6 +110,7 @@ export default function PropertyPage({ params }: { params: { id: string } }) {
           <AdditionalDetails />
           <FloorPlans />
           <TourSchedule />
+          <PropertyVideo />
         </div>
 
         {/* Right (Sticky Contact Box) */}
