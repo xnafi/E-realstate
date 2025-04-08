@@ -2,6 +2,7 @@
 import AdditionalDetails from "@/components/view/AdditionalDetails";
 import FloorPlans from "@/components/view/FloorPlans";
 import PropertyDetails from "@/components/view/PropertyDetails";
+import TourSchedule from "@/components/view/TourSchedule";
 import Image from "next/image";
 import {
   FaHome,
@@ -107,6 +108,7 @@ export default function PropertyPage({ params }: { params: { id: string } }) {
           <PropertyDetails />
           <AdditionalDetails />
           <FloorPlans />
+          <TourSchedule />
         </div>
 
         {/* Right (Sticky Contact Box) */}
