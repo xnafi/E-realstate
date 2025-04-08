@@ -4,7 +4,7 @@ import FeaturedListings from "@/components/view/FeaturedListings";
 import GetInTouch from "@/components/view/GetInTouch";
 import InquiryForm from "@/components/view/InquiryForm";
 import Lifestyles from "@/components/view/Lifestyles";
-import NewsLetter from "@/components/view/NewsLetter";
+// import NewsLetter from "@/components/view/NewsLetter";
 import PartnerLogo from "@/components/view/PartnerLogo";
 import Properties from "@/components/view/Properties";
 import Welcome from "@/components/view/Welcome";
@@ -21,7 +21,7 @@ export default function HomePage() {
       <ExploreCities />
       <GetInTouch />
       <PartnerLogo />
-      <NewsLetter />
+      {/* <NewsLetter /> */}
       </div>
     );
   }
