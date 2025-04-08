@@ -38,19 +38,19 @@ const listings = [
 ];
 
 export default function PropertyPage({ params }: { params: { id: string } }) {
-  // Make sure params.id exists and is a number
-  const propertyId = parseInt(params.id, 10);
-
-  if (isNaN(propertyId)) {
-    return <div className="text-center mt-20 text-xl">Invalid property ID.</div>;
-  }
-
-  // Find the property based on the dynamic route ID
-  const property = listings.find((item) => item.id === propertyId);
-
-  if (!property) {
-    return <div className="text-center mt-20 text-xl">Property not found.</div>;
-  }
+    // Make sure params.id exists and is a number
+    const propertyId = parseInt(params.id, 10);
+  
+    if (isNaN(propertyId)) {
+      return <div className="text-center mt-20 text-xl">Invalid property ID.</div>;
+    }
+  
+    // Find the property based on the dynamic route ID
+    const property = listings.find((item) => item.id === propertyId);
+  
+    if (!property) {
+      return <div className="text-center mt-20 text-xl">Property not found.</div>;
+    }
 
   return (
     <div className="bg-gray-50">
