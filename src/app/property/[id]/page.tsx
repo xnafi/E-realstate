@@ -1,5 +1,6 @@
 
 import AdditionalDetails from "@/components/view/AdditionalDetails";
+import FloorPlans from "@/components/view/FloorPlans";
 import PropertyDetails from "@/components/view/PropertyDetails";
 import Image from "next/image";
 import {
@@ -42,7 +43,7 @@ export default function PropertyPage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className="">
+    <div className="bg-gray-50">
     <div className="max-w-6xl mx-auto py-8 px-4 space-y-8">
       {/* Breadcrumb */}
       <div className="flex items-center text-sm text-gray-500 gap-1 flex-wrap">
@@ -105,6 +106,7 @@ export default function PropertyPage({ params }: { params: { id: string } }) {
           </div>
           <PropertyDetails />
           <AdditionalDetails />
+          <FloorPlans />
         </div>
 
         {/* Right (Sticky Contact Box) */}
