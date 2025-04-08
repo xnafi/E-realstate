@@ -42,7 +42,6 @@ const TourSchedule = () => {
     { day: 'Sat', date: '05', month: 'Apr' },
     { day: 'Sun', date: '06', month: 'Apr' },
   ];
-  
 
   const scrollSlider = (direction: 'left' | 'right') => {
     if (sliderRef.current) {
@@ -57,8 +56,8 @@ const TourSchedule = () => {
     <div className="bg-white p-4 sm:p-6 lg:p-8 rounded-lg">
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Left Side Image */}
-        <div className="lg:w-1/2 h-full">
-          <div className="relative w-full h-full min-h-[570px] rounded-md overflow-hidden shadow">
+        <div className="w-full lg:w-1/2">
+          <div className="relative w-full h-[300px] sm:h-[400px] lg:h-full min-h-[570px] rounded-md overflow-hidden shadow">
             <Image
               src="https://i.postimg.cc/3JYmTDBN/digital-art-style-light-lamp-design.jpg"
               alt="Tour"
@@ -69,7 +68,7 @@ const TourSchedule = () => {
         </div>
 
         {/* Right Side Form */}
-        <div className="lg:w-1/2">
+        <div className="w-full lg:w-1/2">
           <h2 className="text-xl font-semibold text-gray-800 mb-4">Schedule A Tour</h2>
 
           {/* Date Slider */}
@@ -79,13 +78,13 @@ const TourSchedule = () => {
             </button>
             <div
               ref={sliderRef}
-              className="flex gap-2 overflow-x-auto no-scrollbar flex-1"
+              className="flex gap-2 overflow-x-auto no-scrollbar flex-1 px-1"
             >
               {dates.map((d, index) => (
                 <div
                   key={index}
                   onClick={() => setSelectedDate(index)}
-                  className={`min-w-[80px] border text-center py-2 rounded cursor-pointer transition-all text-sm ${
+                  className={`min-w-[72px] sm:min-w-[80px] border text-center py-2 rounded cursor-pointer transition-all text-sm ${
                     selectedDate === index
                       ? 'bg-blue-50 border-blue-500 text-blue-600 font-medium'
                       : 'bg-white border-gray-200 text-gray-700'
@@ -102,7 +101,7 @@ const TourSchedule = () => {
             </button>
           </div>
 
-          {/* Tour Type */}
+          {/* Tour Type Switch */}
           <div className="flex mb-4">
             <button
               className={`flex-1 border px-4 py-2 rounded-l text-sm ${
