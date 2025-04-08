@@ -1,4 +1,5 @@
 
+import AdditionalDetails from "@/components/view/AdditionalDetails";
 import PropertyDetails from "@/components/view/PropertyDetails";
 import Image from "next/image";
 import {
@@ -103,6 +104,7 @@ export default function PropertyPage({ params }: { params: { id: string } }) {
             </div>
           </div>
           <PropertyDetails />
+          <AdditionalDetails />
         </div>
 
         {/* Right (Sticky Contact Box) */}
