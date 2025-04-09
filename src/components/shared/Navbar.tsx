@@ -212,11 +212,18 @@ const Navbar = () => {
                               {openSubDropdown === dropItem.label && (
                                 <ul className="ml-4 mt-1 space-y-1">
                                   {(dropItem.subDropdown ?? []).map((subItem: string, subIdx: number) => (
-                                    <li key={subIdx}>
-                                      <Link href="#" className="block hover:underline">
-                                        {subItem}
-                                      </Link>
-                                    </li>
+                                    <Link
+                                    key={subIdx}
+                                    href={
+                                      subItem === 'Grid Full Width 3cols'
+                                        ? '/properties/grid-full-width'
+                                        : '#'
+                                    }
+                                    className="block text-sm"
+                                  >
+                                    {subItem}
+                                  </Link>
+                                  
                                   ))}
                                 </ul>
                               )}
