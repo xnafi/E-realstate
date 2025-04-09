@@ -1,9 +1,9 @@
-import AdditionalDetails from "@/components/view/AdditionalDetails";
-import FloorPlans from "@/components/view/FloorPlans";
-import PropertyDetails from "@/components/view/PropertyDetails";
-import PropertyVideo from "@/components/view/PropertyVideo";
-import TourSchedule from "@/components/view/TourSchedule";
+
+
+"use client";
+
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import {
   FaHome,
   FaHeart,
@@ -11,9 +11,27 @@ import {
   FaExpand,
   FaMapMarkerAlt,
 } from "react-icons/fa";
+import AdditionalDetails from "@/components/view/AdditionalDetails";
+import FloorPlans from "@/components/view/FloorPlans";
+import PropertyDetails from "@/components/view/PropertyDetails";
+import PropertyVideo from "@/components/view/PropertyVideo";
+import TourSchedule from "@/components/view/TourSchedule";
 
-// Sample property listings data
-const listings = [
+interface Listing {
+  id: number;
+  title: string;
+  address: string;
+  price: string;
+  image: string;
+}
+
+interface PropertyPageProps {
+  params: {
+    id: string;
+  };
+}
+
+const listings: Listing[] = [
   {
     id: 1,
     title: "Light And Modern Apartment",
@@ -37,19 +55,12 @@ const listings = [
   },
 ];
 
-export default function PropertyPage({ params }: { params: { id: string } }) {
-  // Make sure params.id exists and is a number
+export default function PropertyPage({ params }: PropertyPageProps) {
   const propertyId = parseInt(params.id, 10);
-
-  if (isNaN(propertyId)) {
-    return <div className="text-center mt-20 text-xl">Invalid property ID.</div>;
-  }
-
-  // Find the property based on the dynamic route ID
   const property = listings.find((item) => item.id === propertyId);
 
-  if (!property) {
-    return <div className="text-center mt-20 text-xl">Property not found.</div>;
+  if (isNaN(propertyId) || !property) {
+    notFound(); // Better for SEO and routing fallback
   }
 
   return (
@@ -92,17 +103,16 @@ export default function PropertyPage({ params }: { params: { id: string } }) {
 
         {/* Main Content */}
         <div className="flex flex-col lg:flex-row gap-6">
-          {/* Left (Scrollable on small screens) */}
+          {/* Left */}
           <div className="w-full lg:w-[70%] overflow-auto">
             <div className="relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded">
               <Image
                 src={property.image}
                 alt={property.title}
                 fill
+                unoptimized // Prevents image optimization error if not in `next.config.js`
                 className="object-cover"
               />
-
-              {/* Top-right overlay icons */}
               <div className="absolute top-4 right-4 flex gap-3 text-white text-lg">
                 {[FaExpand, FaHeart, FaShareAlt].map((Icon, index) => (
                   <div
@@ -121,7 +131,7 @@ export default function PropertyPage({ params }: { params: { id: string } }) {
             <PropertyVideo />
           </div>
 
-          {/* Right (Sticky Contact Box) */}
+          {/* Right */}
           <div className="w-full lg:w-[30%]">
             <div className="sticky top-20 border rounded p-4 space-y-4 bg-white shadow">
               <div className="flex items-center gap-3">
@@ -130,6 +140,7 @@ export default function PropertyPage({ params }: { params: { id: string } }) {
                   alt="Agent"
                   width={40}
                   height={40}
+                  unoptimized
                   className="rounded-full"
                 />
                 <div>
