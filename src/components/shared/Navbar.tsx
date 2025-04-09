@@ -91,7 +91,9 @@ const Navbar = () => {
                 <FaChevronDown className="text-xs" />
               </div>
             ))}
-            <Link href="#" className="hover:underline">Contact</Link>
+           <Link href="/contact" className="hover:underline">Contact</Link>
+
+
             <div className="flex flex-col gap-2 mt-4">
               <Link href="#" className="hover:underline">Login</Link>
               <Link href="#" className="hover:underline">Register</Link>
@@ -122,9 +124,8 @@ const Navbar = () => {
                 </div>
               </div>
             ))}
-            <Link href="#" className="hover:underline">
-              Contact
-            </Link>
+            <Link href="/contact" className="hover:underline">Contact</Link>
+
           </div>
 
           {/* Right Nav */}
