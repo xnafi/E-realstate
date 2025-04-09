@@ -10,6 +10,11 @@ import {
   FaExpand,
   FaMapMarkerAlt,
 } from "react-icons/fa";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 import AdditionalDetails from "@/components/view/AdditionalDetails";
 import FloorPlans from "@/components/view/FloorPlans";
@@ -24,6 +29,7 @@ interface Listing {
   address: string;
   price: string;
   image: string;
+  images?: string[];
 }
 
 const listings: Listing[] = [
@@ -33,6 +39,11 @@ const listings: Listing[] = [
     address: "2436 SW 8th St, Miami, FL 33135, USA",
     price: "$4,500/mo",
     image: "https://i.postimg.cc/5NHgzFHn/allison-saeng-ra-Bu-IBxd4-MQ-unsplash.jpg",
+    images: [
+      "https://i.postimg.cc/5NHgzFHn/allison-saeng-ra-Bu-IBxd4-MQ-unsplash.jpg",
+      "https://i.postimg.cc/wv6d0KZT/036-1170x877.jpg",
+      "https://i.postimg.cc/6qqxxrBk/047-1170x877.jpg",
+    ],
   },
   {
     id: 2,
@@ -40,6 +51,11 @@ const listings: Listing[] = [
     address: "Marcy Ave, Brooklyn, NY, USA",
     price: "$2,800/mo",
     image: "https://i.postimg.cc/pdBJvf7X/steffen-lemmerzahl-XEjhbht-Yc1-A-unsplash.jpg",
+    images: [
+      "https://i.postimg.cc/pdBJvf7X/steffen-lemmerzahl-XEjhbht-Yc1-A-unsplash.jpg",
+      "https://i.postimg.cc/wv6d0KZT/036-1170x877.jpg",
+      "https://i.postimg.cc/6qqxxrBk/047-1170x877.jpg",
+    ],
   },
   {
     id: 3,
@@ -47,6 +63,11 @@ const listings: Listing[] = [
     address: "8100 S Ashland Ave, Chicago, IL 60620, USA",
     price: "$11,000/mo",
     image: "https://i.postimg.cc/RZ5YVTPc/le-quan-GLFAKS5f3wc-unsplash.jpg",
+    images: [
+      "https://i.postimg.cc/RZ5YVTPc/le-quan-GLFAKS5f3wc-unsplash.jpg",
+      "https://i.postimg.cc/wv6d0KZT/036-1170x877.jpg",
+      "https://i.postimg.cc/6qqxxrBk/047-1170x877.jpg",
+    ],
   },
 ];
 
@@ -56,7 +77,7 @@ export default function PropertyPage() {
   const property = listings.find((item) => item.id === propertyId);
 
   if (isNaN(propertyId) || !property) {
-    notFound(); 
+    notFound();
   }
 
   return (
@@ -74,12 +95,8 @@ export default function PropertyPage() {
           <div>
             <h1 className="text-2xl font-semibold">{property.title}</h1>
             <div className="flex items-center gap-2 mt-1 flex-wrap">
-              <span className="bg-green-600 text-white text-xs px-2 py-0.5 rounded">
-                FEATURED
-              </span>
-              <span className="bg-black text-white text-xs px-2 py-0.5 rounded">
-                FOR RENT
-              </span>
+              <span className="bg-green-600 text-white text-xs px-2 py-0.5 rounded">FEATURED</span>
+              <span className="bg-black text-white text-xs px-2 py-0.5 rounded">FOR RENT</span>
             </div>
             <p className="text-gray-500 text-sm mt-1 flex items-center gap-1">
               <FaMapMarkerAlt className="text-green-600" />
@@ -101,15 +118,31 @@ export default function PropertyPage() {
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Left */}
           <div className="w-full lg:w-[70%] overflow-auto">
+            {/* Swiper Slider */}
             <div className="relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded">
-              <Image
-                src={property.image}
-                alt={property.title}
-                fill
-                unoptimized
-                className="object-cover"
-              />
-              <div className="absolute top-4 right-4 flex gap-3 text-white text-lg">
+              <Swiper
+                modules={[Navigation, Pagination]}
+                navigation
+                pagination={{ clickable: true }}
+                spaceBetween={10}
+                slidesPerView={1}
+                className="h-full"
+              >
+                {property.images?.map((img, index) => (
+                  <SwiperSlide key={index}>
+                    <Image
+                      src={img}
+                      alt={property.title}
+                      fill
+                      unoptimized
+                      className="object-cover"
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+
+              {/* Top Right Icons */}
+              <div className="absolute top-4 right-4 flex gap-3 text-white text-lg z-10">
                 {[FaExpand, FaHeart, FaShareAlt].map((Icon, index) => (
                   <div
                     key={index}
@@ -120,6 +153,7 @@ export default function PropertyPage() {
                 ))}
               </div>
             </div>
+
             <PropertyDetails />
             <AdditionalDetails />
             <FloorPlans />
