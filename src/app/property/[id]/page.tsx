@@ -55,7 +55,7 @@ export default function PropertyPage() {
   const property = listings.find((item) => item.id === propertyId);
 
   if (isNaN(propertyId) || !property) {
-    notFound(); // More SEO friendly
+    notFound(); 
   }
 
   return (
