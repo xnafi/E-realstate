@@ -19,47 +19,47 @@ import {
             </p>
           </div>
           <div className="border-t pt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-sm text-gray-700">
-            <div className="flex items-start gap-3">
+            <div className="flex-col items-start gap-3">
+              <div className="flex items-start gap-3 text-base">
               <FaBuilding className="text-gray-500 mt-1" />
-              <div>
                 <p className="font-semibold">Apartment</p>
+              </div>
                 <p className="text-xs text-gray-500">Property Type</p>
-              </div>
             </div>
-            <div className="flex items-start gap-3">
+            <div className="flex-col items-start gap-3">
+              <div className="flex items-start gap-3 text-base">
               <FaBed className="text-gray-500 mt-1" />
-              <div>
                 <p className="font-semibold">4</p>
+              </div>
                 <p className="text-xs text-gray-500">Bedrooms</p>
-              </div>
             </div>
-            <div className="flex items-start gap-3">
+            <div className="flex-col items-start gap-3">
+              <div className="flex items-start gap-3 text-base">
               <FaBath className="text-gray-500 mt-1" />
-              <div>
                 <p className="font-semibold">2</p>
+              </div>
                 <p className="text-xs text-gray-500">Bathrooms</p>
-              </div>
             </div>
-            <div className="flex items-start gap-3">
+            <div className="flex-col items-start gap-3">
+              <div className="flex items-start gap-3 text-base">
               <FaCar className="text-gray-500 mt-1" />
-              <div>
                 <p className="font-semibold">1</p>
+              </div>
                 <p className="text-xs text-gray-500">Garage</p>
-              </div>
             </div>
-            <div className="flex items-start gap-3">
+            <div className="flex-col items-start gap-3">
+              <div className="flex items-start gap-3 text-base">
               <FaRulerCombined className="text-gray-500 mt-1" />
-              <div>
                 <p className="font-semibold">1200</p>
+              </div>
                 <p className="text-xs text-gray-500">Sq Ft</p>
-              </div>
             </div>
-            <div className="flex items-start gap-3">
+            <div className="flex-col items-start gap-3">
+              <div className="flex items-start gap-3 text-base">
               <FaCalendarAlt className="text-gray-500 mt-1" />
-              <div>
                 <p className="font-semibold">2016</p>
-                <p className="text-xs text-gray-500">Year Built</p>
               </div>
+                <p className="text-xs text-gray-500">Year Built</p>
             </div>
           </div>
         </div>
