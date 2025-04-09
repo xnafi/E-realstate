@@ -1,9 +1,8 @@
-
-
 "use client";
 
-import Image from "next/image";
+import { useParams } from "next/navigation";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import {
   FaHome,
   FaHeart,
@@ -11,6 +10,7 @@ import {
   FaExpand,
   FaMapMarkerAlt,
 } from "react-icons/fa";
+
 import AdditionalDetails from "@/components/view/AdditionalDetails";
 import FloorPlans from "@/components/view/FloorPlans";
 import PropertyDetails from "@/components/view/PropertyDetails";
@@ -23,12 +23,6 @@ interface Listing {
   address: string;
   price: string;
   image: string;
-}
-
-interface PropertyPageProps {
-  params: {
-    id: string;
-  };
 }
 
 const listings: Listing[] = [
@@ -55,12 +49,13 @@ const listings: Listing[] = [
   },
 ];
 
-export default function PropertyPage({ params }: PropertyPageProps) {
-  const propertyId = parseInt(params.id, 10);
+export default function PropertyPage() {
+  const params = useParams();
+  const propertyId = parseInt(params?.id as string, 10);
   const property = listings.find((item) => item.id === propertyId);
 
   if (isNaN(propertyId) || !property) {
-    notFound(); // Better for SEO and routing fallback
+    notFound(); // More SEO friendly
   }
 
   return (
@@ -110,7 +105,7 @@ export default function PropertyPage({ params }: PropertyPageProps) {
                 src={property.image}
                 alt={property.title}
                 fill
-                unoptimized // Prevents image optimization error if not in `next.config.js`
+                unoptimized
                 className="object-cover"
               />
               <div className="absolute top-4 right-4 flex gap-3 text-white text-lg">
@@ -131,7 +126,7 @@ export default function PropertyPage({ params }: PropertyPageProps) {
             <PropertyVideo />
           </div>
 
-          {/* Right */}
+          {/* Right (Sticky Contact Form) */}
           <div className="w-full lg:w-[30%]">
             <div className="sticky top-20 border rounded p-4 space-y-4 bg-white shadow">
               <div className="flex items-center gap-3">
