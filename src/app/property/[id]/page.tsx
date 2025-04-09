@@ -16,6 +16,7 @@ import FloorPlans from "@/components/view/FloorPlans";
 import PropertyDetails from "@/components/view/PropertyDetails";
 import PropertyVideo from "@/components/view/PropertyVideo";
 import TourSchedule from "@/components/view/TourSchedule";
+import Review from "@/components/view/Review";
 
 interface Listing {
   id: number;
@@ -124,6 +125,7 @@ export default function PropertyPage() {
             <FloorPlans />
             <TourSchedule />
             <PropertyVideo />
+            <Review />
           </div>
 
           {/* Right (Sticky Contact Form) */}
