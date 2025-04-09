@@ -22,6 +22,7 @@ import PropertyDetails from "@/components/view/PropertyDetails";
 import PropertyVideo from "@/components/view/PropertyVideo";
 import TourSchedule from "@/components/view/TourSchedule";
 import Review from "@/components/view/Review";
+import SimilarListings from "@/components/view/SimilarListings";
 
 interface Listing {
   id: number;
@@ -117,7 +118,7 @@ export default function PropertyPage() {
         {/* Main Content */}
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Left */}
-          <div className="w-full lg:w-[70%] overflow-auto">
+          <div className="w-full lg:w-[70%] overflow-auto border-b-2 py-2">
             {/* Swiper Slider */}
             <div className="relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded">
               <Swiper
@@ -160,6 +161,7 @@ export default function PropertyPage() {
             <TourSchedule />
             <PropertyVideo />
             <Review />
+            <SimilarListings />
           </div>
 
           {/* Right (Sticky Contact Form) */}
