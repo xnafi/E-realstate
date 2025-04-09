@@ -47,12 +47,12 @@ const Review = () => {
     <div className="bg-gray-50 py-10 px-4 sm:px-6 lg:px-8">
       <div className="space-y-6 max-w-4xl mx-auto">
         {/* Header */}
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col sm:flex-row justify-between items-center">
           <h3 className="text-lg sm:text-xl font-medium text-gray-800">
             0 Review
           </h3>
 
-          <div className="flex items-center gap-3 text-sm relative">
+          <div className="flex items-center gap-3 text-sm relative mt-4 sm:mt-0">
             <button
               type="button"
               onClick={() => setShowSortOptions(!showSortOptions)}
@@ -64,7 +64,7 @@ const Review = () => {
             </button>
 
             {showSortOptions && (
-              <ul className="absolute z-10 top-full mt-1 right-20 bg-white border border-gray-200 rounded shadow w-56">
+              <ul className="absolute z-10 top-full mt-1 right-0 sm:right-20 bg-white border border-gray-200 rounded shadow w-56">
                 {sortOptions.map((option) => (
                   <li key={option}>
                     <button
