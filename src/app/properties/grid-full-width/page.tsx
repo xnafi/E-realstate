@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useState } from 'react';
 import { FaSearch, FaChevronDown, FaCog } from 'react-icons/fa';
 
 const properties = [
@@ -14,7 +15,7 @@ const properties = [
     bedrooms: 4,
     bathrooms: 2,
     area: 1200,
-    tag: 'For Sale'
+    tag: 'For Sale',
   },
   {
     id: 2,
@@ -26,7 +27,7 @@ const properties = [
     bedrooms: 6,
     bathrooms: 2,
     area: 5400,
-    tag: 'For Sale'
+    tag: 'For Sale',
   },
   {
     id: 3,
@@ -38,8 +39,8 @@ const properties = [
     bedrooms: 2,
     bathrooms: 2,
     area: 1320,
-    tag: 'For Rent'
-  }
+    tag: 'For Rent',
+  },
 ];
 
 interface Property {
@@ -54,6 +55,125 @@ interface Property {
   area: number;
   tag: string;
 }
+
+const dropdownOptions = {
+  Status: ['For Rent', 'For Sale', 'Foreclosures', 'New Construction', 'New Listing'],
+  Type: [
+    'Commercial',
+    '- Office',
+    '- Shop',
+    'Residential',
+    '- Apartment',
+    '- Villa',
+  ],
+  Bedrooms: ['1', '2', '3', '4'],
+  Bathrooms: ['1', '2', '3', '4'],
+};
+
+const Dropdown = ({
+  label,
+  options,
+  selected,
+  setSelected,
+  openDropdown,
+  setOpenDropdown,
+}: {
+  label: string;
+  options: string[];
+  selected: string[];
+  setSelected: (val: string[]) => void;
+  openDropdown: string;
+  setOpenDropdown: (val: string) => void;
+}) => {
+  const isOpen = openDropdown === label;
+  const [search, setSearch] = useState('');
+
+  const toggleDropdown = () =>
+    setOpenDropdown(isOpen ? '' : label);
+
+  const filteredOptions = options.filter((opt) =>
+    opt.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const handleSelect = (option: string) => {
+    const cleanOpt = option.replace('-', '').trim();
+    setSelected(
+      selected.includes(cleanOpt)
+        ? selected.filter((item) => item !== cleanOpt)
+        : [...selected, cleanOpt]
+    );
+  };
+
+  const handleSelectAll = () => {
+    const actualOptions = options
+      .filter((opt) => !opt.startsWith('-'))
+      .map((opt) => opt.trim());
+    setSelected(actualOptions);
+  };
+
+  const handleDeselectAll = () => setSelected([]);
+
+  const labelText =
+    selected.length > 0 ? `${label} (${selected.length} selected)` : label;
+
+  return (
+    <div className="relative min-w-[150px]">
+      <div
+        onClick={toggleDropdown}
+        className="flex items-center border px-2 py-2 text-sm text-gray-700 cursor-pointer justify-between"
+      >
+        {labelText}
+        <FaChevronDown className="ml-2 text-xs" />
+      </div>
+
+      {isOpen && (
+        <div className="absolute z-10 bg-white shadow-lg border mt-1 w-60 max-h-60 overflow-y-auto p-2 space-y-1">
+          {(label === 'Status' || label === 'Type') && (
+            <>
+              <input
+                type="text"
+                placeholder="Search..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full px-2 py-1 mb-2 border border-gray-300 rounded text-sm outline-none"
+              />
+              <div className="flex justify-between mb-2 text-sm px-1">
+                <button
+                  onClick={handleSelectAll}
+                  className="text-blue-500 hover:underline"
+                >
+                  Select All
+                </button>
+                <button
+                  onClick={handleDeselectAll}
+                  className="text-red-500 hover:underline"
+                >
+                  Deselect All
+                </button>
+              </div>
+            </>
+          )}
+
+          {filteredOptions.map((opt, i) => {
+            const cleanOpt = opt.replace('-', '').trim();
+            const isSelected = selected.includes(cleanOpt);
+            return (
+              <div
+                key={i}
+                onClick={() => handleSelect(opt)}
+                className={`text-sm px-2 py-1 rounded cursor-pointer ${
+                  isSelected ? 'bg-blue-100 text-blue-800 font-semibold' : 'hover:bg-gray-100'
+                } ${opt.startsWith('-') ? 'pl-6' : ''}`}
+              >
+                {opt}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
 
 const PropertyCard = ({ property }: { property: Property }) => (
   <div className="border rounded overflow-hidden shadow hover:shadow-lg transition duration-300 bg-white">
@@ -84,10 +204,15 @@ const PropertyCard = ({ property }: { property: Property }) => (
 );
 
 const SearchBar = () => {
+  const [openDropdown, setOpenDropdown] = useState('');
+  const [selectedStatus, setSelectedStatus] = useState<string[]>([]);
+  const [selectedType, setSelectedType] = useState<string[]>([]);
+  const [selectedBeds, setSelectedBeds] = useState<string[]>([]);
+  const [selectedBaths, setSelectedBaths] = useState<string[]>([]);
+
   return (
-    <div className=" flex flex-wrap  items-center mb-8 max-w-6xl mx-auto">
-      {/* Search Input */}
-      <div className="flex items-center border  px-3 py-2 flex-grow md:flex-grow-0 md:w-1/2">
+    <div className="flex flex-wrap items-center mb-8 max-w-6xl mx-auto">
+      <div className="flex items-center border px-3 py-2 flex-grow md:flex-grow-0 md:w-1/3">
         <FaSearch className="text-gray-400 mr-2" />
         <input
           type="text"
@@ -96,25 +221,45 @@ const SearchBar = () => {
         />
       </div>
 
-      {/* Dropdowns */}
-      {['Status', 'Type', 'Bedrooms', 'Bathrooms'].map((label) => (
-        <div
-          key={label}
-          className="flex items-center border  px-1 py-2 text-sm text-gray-500 cursor-pointer min-w-[100px] justify-between"
-        >
-          {label}
-          <FaChevronDown className="ml-2 text-xs" />
-        </div>
-      ))}
+      <Dropdown
+        label="Status"
+        options={dropdownOptions.Status}
+        selected={selectedStatus}
+        setSelected={setSelectedStatus}
+        openDropdown={openDropdown}
+        setOpenDropdown={setOpenDropdown}
+      />
+      <Dropdown
+        label="Type"
+        options={dropdownOptions.Type}
+        selected={selectedType}
+        setSelected={setSelectedType}
+        openDropdown={openDropdown}
+        setOpenDropdown={setOpenDropdown}
+      />
+      <Dropdown
+        label="Bedrooms"
+        options={dropdownOptions.Bedrooms}
+        selected={selectedBeds}
+        setSelected={setSelectedBeds}
+        openDropdown={openDropdown}
+        setOpenDropdown={setOpenDropdown}
+      />
+      <Dropdown
+        label="Bathrooms"
+        options={dropdownOptions.Bathrooms}
+        selected={selectedBaths}
+        setSelected={setSelectedBaths}
+        openDropdown={openDropdown}
+        setOpenDropdown={setOpenDropdown}
+      />
 
-      {/* Advanced */}
-      <div className="flex items-center text-blue-600 text-sm cursor-pointer whitespace-nowrap border  px-2 py-2">
+      <div className="flex items-center text-blue-600 text-sm cursor-pointer whitespace-nowrap border px-2 py-2">
         <FaCog className="mr-1 text-sm" />
         <span>Advanced</span>
       </div>
 
-      {/* Go Button */}
-      <button className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2  text-sm">
+      <button className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-2 text-sm">
         Go
       </button>
     </div>
