@@ -56,10 +56,10 @@ export default function AdvancedFilters() {
   };
 
   return (
-    <div className=" bg-white p-4">
+    <div className="bg-white p-4">
       {showAdvanced && (
         <>
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
             {/* All Cities Dropdown */}
             <div className="relative" ref={cityRef}>
               <button
