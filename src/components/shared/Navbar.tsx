@@ -61,13 +61,14 @@ const Navbar = () => {
   };
 
   return (
-    <header className="border-b max-w-[1400px] mx-auto z-50 relative">
+    <header className="border-b max-w-[1400px] mx-auto z-50 relative bg-white">
       {/* Top Bar */}
       <div className="flex flex-col lg:flex-row items-center justify-between px-6 py-8 text-sm text-gray-700">
-        <div className="text-3xl font-bold text-blue-900 flex items-center gap-2 mb-4 lg:mb-0">
+        {/* Logo Link to Home */}
+        <Link href="/" className="text-3xl font-bold text-blue-900 flex items-center gap-2 mb-4 lg:mb-0">
           <HiOutlineLocationMarker className="text-blue-600 text-4xl" />
           <span>E-Realstate</span>
-        </div>
+        </Link>
 
         {/* Contact Info */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center lg:text-left">
@@ -213,17 +214,16 @@ const Navbar = () => {
                                 <ul className="ml-4 mt-1 space-y-1">
                                   {(dropItem.subDropdown ?? []).map((subItem: string, subIdx: number) => (
                                     <Link
-                                    key={subIdx}
-                                    href={
-                                      subItem === 'Grid Full Width 3cols'
-                                        ? '/properties/grid-full-width'
-                                        : '#'
-                                    }
-                                    className="block text-sm"
-                                  >
-                                    {subItem}
-                                  </Link>
-                                  
+                                      key={subIdx}
+                                      href={
+                                        subItem === 'Grid Full Width 3cols'
+                                          ? '/properties/grid-full-width'
+                                          : '#'
+                                      }
+                                      className="block text-sm"
+                                    >
+                                      {subItem}
+                                    </Link>
                                   ))}
                                 </ul>
                               )}
