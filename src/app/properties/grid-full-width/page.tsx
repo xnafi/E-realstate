@@ -5,6 +5,15 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { FaSearch, FaChevronDown, FaCog } from 'react-icons/fa';
 import { FaHome, FaThLarge, FaListUl } from 'react-icons/fa';
+
+import {
+  FaHeart,
+  FaPlus,
+  FaExpand,
+  FaBed,
+  FaBath,
+  FaRulerCombined,
+} from 'react-icons/fa';
 import Link from 'next/link';
 
 // Dummy property list
@@ -14,7 +23,7 @@ const properties = [
     title: 'Equestrian Villa',
     price: '$1,599,000',
     rate: '$150.00 / ft',
-    image: '/property1.jpg',
+    image: 'https://i.postimg.cc/pXL5rp2L/city-building-along-road-daytime.jpg',
     address: '3385 Pan American Dr, Miami FL',
     bedrooms: 4,
     bathrooms: 2,
@@ -26,7 +35,7 @@ const properties = [
     title: 'Green House',
     price: '$3,550,000',
     rate: '$2,560 / ft',
-    image: '/property2.jpg',
+    image: 'https://i.postimg.cc/FzBr7FZY/charming-yellow-house-with-wooden-windows-green-grassy-garden.jpg',
     address: '695 Buttonwood Ln, Miami FL',
     bedrooms: 6,
     bathrooms: 2,
@@ -38,7 +47,7 @@ const properties = [
     title: 'Renovated Kitchen Apartment',
     price: '$1,890/mo',
     rate: '$150.00 / ft',
-    image: '/property3.jpg',
+    image: 'https://i.postimg.cc/VN8YSVjW/beautiful-shot-modern-house-kitchen.jpg',
     address: 'NE 50th Terrace, Miami FL',
     bedrooms: 2,
     bathrooms: 2,
@@ -50,7 +59,7 @@ const properties = [
     title: 'Luxury Penthouse',
     price: '$4,200,000',
     rate: '$1,100 / ft',
-    image: '/property1.jpg',
+    image: 'https://i.postimg.cc/vHxM0shv/urban-city-architecture-1.jpg',
     address: 'Ocean Dr, Miami FL',
     bedrooms: 5,
     bathrooms: 3,
@@ -62,7 +71,7 @@ const properties = [
     title: 'City Studio',
     price: '$900/mo',
     rate: '$150.00 / ft',
-    image: '/property2.jpg',
+    image: 'https://i.postimg.cc/T2g1LvmL/building.jpg',
     address: 'Downtown Ave, Miami FL',
     bedrooms: 1,
     bathrooms: 1,
@@ -74,7 +83,7 @@ const properties = [
     title: 'Countryside Retreat',
     price: '$750,000',
     rate: '$350 / ft',
-    image: '/property3.jpg',
+    image: 'https://i.postimg.cc/3J38k4YV/beautiful-shot-golcuk-puddles-karacasu-turkey.jpg',
     address: 'Farm Rd, Miami FL',
     bedrooms: 3,
     bathrooms: 2,
@@ -224,31 +233,69 @@ const SortDropdown = ({
 
 // --- Property Card
 const PropertyCard = ({ property }: { property: Property }) => (
-  <div className="border rounded overflow-hidden shadow hover:shadow-lg transition duration-300 bg-white">
-    <div className="relative">
-      <Image
-        src={property.image}
-        alt={property.title}
-        width={600}
-        height={400}
-        className="w-full h-60 object-cover"
-      />
-      <span className="absolute top-2 right-2 bg-black text-white text-xs px-2 py-1 rounded">
-        {property.tag}
-      </span>
+  <div className="border rounded overflow-hidden hover:shadow-lg transition duration-300 bg-white">
+  <div className="relative">
+    <Image
+      src={property.image}
+      alt={property.title}
+      width={600}
+      height={400}
+      className="w-full h-60 object-cover"
+    />
+
+    {/* Tag */}
+    <span className="absolute top-2 right-2 bg-black text-white text-xs px-2 py-1 rounded uppercase">
+      {property.tag}
+    </span>
+
+    {/* Price & Rate (Bottom-left) */}
+    <div className="absolute bottom-2 left-2 bg-opacity-90 text-white p-2 rounded">
+      <h2 className="text-base font-semibold">{property.price}</h2>
+      <p className="text-xs">{property.rate}</p>
     </div>
-    <div className="p-4">
-      <h2 className="text-lg font-semibold text-blue-900">{property.price}</h2>
-      <p className="text-xs text-gray-500 mb-2">{property.rate}</p>
-      <p className="font-medium">{property.title}</p>
-      <p className="text-sm text-gray-500">{property.address}</p>
-      <div className="flex justify-between text-gray-600 text-sm mt-3">
-        <span>{property.bedrooms} Beds</span>
-        <span>{property.bathrooms} Baths</span>
-        <span>{property.area} Sq Ft</span>
+
+    {/* Action Icons (Bottom-right) */}
+    <div className="absolute bottom-4 right-2 flex gap-2  bg-opacity-90 p-2 rounded">
+      <FaHeart className="text-white hover:text-red-500 cursor-pointer" />
+      <FaPlus className="text-white hover:text-blue-500 cursor-pointer" />
+      <FaExpand className="text-white hover:text-green-500 cursor-pointer" />
+    </div>
+  </div>
+
+  {/* Property Info */}
+  <div className="p-4 space-y-2 ">
+    <div className='mb-8'>
+
+    <p className="font-medium text-gray-800">{property.title}</p>
+    <p className="text-sm text-gray-500 ">{property.address}</p>
+    </div>
+
+    {/* Icons Row */}
+    <div className="flex justify-between text-sm text-gray-700 mt-4">
+      <div>
+      <div className="flex items-center gap-3 text-xl">
+        <FaBed className="text-gray-500" />
+        <span>{property.bedrooms}</span>
+      </div>
+      <h1>Bedrooms</h1>
+      </div>
+      <div>
+      <div className="flex items-center gap-1">
+        <FaBath className="text-gray-500" />
+        <span>{property.bathrooms} </span>
+      </div>
+      <h1>Bathrooms</h1>
+      </div>
+      <div>
+      <div className="flex items-center gap-1">
+        <FaRulerCombined className="text-gray-500" />
+        <span>{property.area} </span>
+      </div>
+      <h1>Sq Ft</h1>
       </div>
     </div>
   </div>
+</div>
 );
 
 // --- SearchBar (Unchanged)

@@ -47,13 +47,14 @@ const Navbar = () => {
     },
     {
       label: 'Others',
-      dropdown: ['About']
+      dropdown: [{ label: 'About', href: '/about' }]
     }
+    
   ];
 
   const toggleDropdown = (label: string) => {
     setOpenDropdown(prev => (prev === label ? null : label));
-    setOpenSubDropdown(null); // reset sub-dropdown when switching main menu
+    setOpenSubDropdown(null); 
   };
 
   const toggleSubDropdown = (label: string) => {
