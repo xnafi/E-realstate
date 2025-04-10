@@ -1,8 +1,10 @@
 'use client';
 
+import AdvancedFilters from '@/components/view/AdvancedFilters';
 import Image from 'next/image';
 import { useState } from 'react';
 import { FaSearch, FaChevronDown, FaCog } from 'react-icons/fa';
+
 
 const properties = [
   {
@@ -58,14 +60,7 @@ interface Property {
 
 const dropdownOptions = {
   Status: ['For Rent', 'For Sale', 'Foreclosures', 'New Construction', 'New Listing'],
-  Type: [
-    'Commercial',
-    '- Office',
-    '- Shop',
-    'Residential',
-    '- Apartment',
-    '- Villa',
-  ],
+  Type: ['Commercial', '- Office', '- Shop', 'Residential', '- Apartment', '- Villa'],
   Bedrooms: ['1', '2', '3', '4'],
   Bathrooms: ['1', '2', '3', '4'],
 };
@@ -88,8 +83,7 @@ const Dropdown = ({
   const isOpen = openDropdown === label;
   const [search, setSearch] = useState('');
 
-  const toggleDropdown = () =>
-    setOpenDropdown(isOpen ? '' : label);
+  const toggleDropdown = () => setOpenDropdown(isOpen ? '' : label);
 
   const filteredOptions = options.filter((opt) =>
     opt.toLowerCase().includes(search.toLowerCase())
@@ -117,7 +111,7 @@ const Dropdown = ({
     selected.length > 0 ? `${label} (${selected.length} selected)` : label;
 
   return (
-    <div className="relative min-w-[150px]">
+    <div className="relative min-w-[150px] bg-white">
       <div
         onClick={toggleDropdown}
         className="flex items-center border px-2 py-2 text-sm text-gray-700 cursor-pointer justify-between"
@@ -209,59 +203,71 @@ const SearchBar = () => {
   const [selectedType, setSelectedType] = useState<string[]>([]);
   const [selectedBeds, setSelectedBeds] = useState<string[]>([]);
   const [selectedBaths, setSelectedBaths] = useState<string[]>([]);
+  const [showAdvanced, setShowAdvanced] = useState(false);
 
   return (
-    <div className="flex flex-wrap items-center mb-8 max-w-6xl mx-auto">
-      <div className="flex items-center border px-3 py-2 flex-grow md:flex-grow-0 md:w-1/3">
-        <FaSearch className="text-gray-400 mr-2" />
-        <input
-          type="text"
-          placeholder="Enter Keyword..."
-          className="outline-none w-full text-sm text-gray-700"
+    <div className="flex flex-col items-start gap-4 mb-8 max-w-6xl mx-auto">
+      <div className="flex flex-wrap items-center w-full">
+        <div className="flex items-center border px-3 py-2 flex-grow md:flex-grow-0 md:w-1/3">
+          <FaSearch className="text-gray-400 mr-2" />
+          <input
+            type="text"
+            placeholder="Enter Keyword..."
+            className="outline-none w-full text-sm text-gray-700"
+          />
+        </div>
+
+        <Dropdown
+          label="Status"
+          options={dropdownOptions.Status}
+          selected={selectedStatus}
+          setSelected={setSelectedStatus}
+          openDropdown={openDropdown}
+          setOpenDropdown={setOpenDropdown}
         />
+        <Dropdown
+          label="Type"
+          options={dropdownOptions.Type}
+          selected={selectedType}
+          setSelected={setSelectedType}
+          openDropdown={openDropdown}
+          setOpenDropdown={setOpenDropdown}
+        />
+        <Dropdown
+          label="Bedrooms"
+          options={dropdownOptions.Bedrooms}
+          selected={selectedBeds}
+          setSelected={setSelectedBeds}
+          openDropdown={openDropdown}
+          setOpenDropdown={setOpenDropdown}
+        />
+        <Dropdown
+          label="Bathrooms"
+          options={dropdownOptions.Bathrooms}
+          selected={selectedBaths}
+          setSelected={setSelectedBaths}
+          openDropdown={openDropdown}
+          setOpenDropdown={setOpenDropdown}
+        />
+
+        <div
+          className="flex items-center text-blue-600 text-sm cursor-pointer whitespace-nowrap border px-2 py-2"
+          onClick={() => setShowAdvanced(!showAdvanced)}
+        >
+          <FaCog className="mr-1 text-sm" />
+          <span>Advanced</span>
+        </div>
+
+        <button className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-2 text-sm">
+          Go
+        </button>
       </div>
 
-      <Dropdown
-        label="Status"
-        options={dropdownOptions.Status}
-        selected={selectedStatus}
-        setSelected={setSelectedStatus}
-        openDropdown={openDropdown}
-        setOpenDropdown={setOpenDropdown}
-      />
-      <Dropdown
-        label="Type"
-        options={dropdownOptions.Type}
-        selected={selectedType}
-        setSelected={setSelectedType}
-        openDropdown={openDropdown}
-        setOpenDropdown={setOpenDropdown}
-      />
-      <Dropdown
-        label="Bedrooms"
-        options={dropdownOptions.Bedrooms}
-        selected={selectedBeds}
-        setSelected={setSelectedBeds}
-        openDropdown={openDropdown}
-        setOpenDropdown={setOpenDropdown}
-      />
-      <Dropdown
-        label="Bathrooms"
-        options={dropdownOptions.Bathrooms}
-        selected={selectedBaths}
-        setSelected={setSelectedBaths}
-        openDropdown={openDropdown}
-        setOpenDropdown={setOpenDropdown}
-      />
-
-      <div className="flex items-center text-blue-600 text-sm cursor-pointer whitespace-nowrap border px-2 py-2">
-        <FaCog className="mr-1 text-sm" />
-        <span>Advanced</span>
-      </div>
-
-      <button className="bg-orange-500 hover:bg-orange-600 text-white px-3 py-2 text-sm">
-        Go
-      </button>
+      {showAdvanced && (
+        <div className=" bg-white  mt-4 ">
+          <AdvancedFilters />
+        </div>
+      )}
     </div>
   );
 };
