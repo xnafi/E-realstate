@@ -49,12 +49,11 @@ const Navbar = () => {
       label: 'Others',
       dropdown: [{ label: 'About', href: '/about' }]
     }
-    
   ];
 
   const toggleDropdown = (label: string) => {
     setOpenDropdown(prev => (prev === label ? null : label));
-    setOpenSubDropdown(null); 
+    setOpenSubDropdown(null);
   };
 
   const toggleSubDropdown = (label: string) => {
@@ -65,13 +64,11 @@ const Navbar = () => {
     <header className="border-b max-w-[1400px] mx-auto z-50 relative bg-white">
       {/* Top Bar */}
       <div className="flex flex-col lg:flex-row items-center justify-between px-6 py-8 text-sm text-gray-700">
-        {/* Logo Link to Home */}
         <Link href="/" className="text-3xl font-bold text-blue-900 flex items-center gap-2 mb-4 lg:mb-0">
           <HiOutlineLocationMarker className="text-blue-600 text-4xl" />
           <span>E-Realstate</span>
         </Link>
 
-        {/* Contact Info */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center lg:text-left">
           <div className="flex items-center justify-center sm:justify-start gap-3">
             <FaPhoneAlt className="text-blue-600 text-3xl mt-2" />
@@ -96,7 +93,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Social Icons */}
         <div className="flex items-center gap-4 mt-4 lg:mt-0 text-blue-900 text-2xl">
           <FaFacebookF />
           <FaTwitter />
@@ -131,11 +127,17 @@ const Navbar = () => {
                 </div>
                 {openDropdown === item.label && (
                   <div className="ml-4 mt-2 space-y-1">
-                    {item.dropdown.map((dropItem: string | { label: string; subDropdown?: string[] }, idx: number) => {
+                    {item.dropdown.map((dropItem: string | { label: string; subDropdown?: string[]; href?: string }, idx: number) => {
                       if (typeof dropItem === 'string') {
                         return (
                           <Link key={idx} href="#" className="block">
                             {dropItem}
+                          </Link>
+                        );
+                      } else if (dropItem.href) {
+                        return (
+                          <Link key={idx} href={dropItem.href} className="block">
+                            {dropItem.label}
                           </Link>
                         );
                       } else {
@@ -192,12 +194,20 @@ const Navbar = () => {
                 {openDropdown === item.label && (
                   <div className="absolute top-full left-0 bg-white text-black py-2 px-4 mt-2 rounded shadow-lg z-50 min-w-[180px]">
                     <ul className="space-y-2 text-sm">
-                      {item.dropdown.map((dropItem: string | { label: string; subDropdown?: string[] }, idx: number) => {
+                      {item.dropdown.map((dropItem: string | { label: string; subDropdown?: string[]; href?: string }, idx: number) => {
                         if (typeof dropItem === 'string') {
                           return (
                             <li key={idx}>
                               <Link href="#" className="block hover:underline">
                                 {dropItem}
+                              </Link>
+                            </li>
+                          );
+                        } else if (dropItem.href) {
+                          return (
+                            <li key={idx}>
+                              <Link href={dropItem.href} className="block hover:underline">
+                                {dropItem.label}
                               </Link>
                             </li>
                           );
