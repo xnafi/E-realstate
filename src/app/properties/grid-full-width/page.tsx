@@ -1,7 +1,7 @@
-// app/properties/grid-full-width/page.tsx
 'use client';
 
 import Image from 'next/image';
+import { FaSearch, FaChevronDown, FaCog } from 'react-icons/fa';
 
 const properties = [
   {
@@ -40,7 +40,6 @@ const properties = [
     area: 1320,
     tag: 'For Rent'
   }
-  // Add more items as needed
 ];
 
 interface Property {
@@ -84,9 +83,48 @@ const PropertyCard = ({ property }: { property: Property }) => (
   </div>
 );
 
+const SearchBar = () => {
+  return (
+    <div className=" flex flex-wrap  items-center mb-8 max-w-6xl mx-auto">
+      {/* Search Input */}
+      <div className="flex items-center border  px-3 py-2 flex-grow md:flex-grow-0 md:w-1/2">
+        <FaSearch className="text-gray-400 mr-2" />
+        <input
+          type="text"
+          placeholder="Enter Keyword..."
+          className="outline-none w-full text-sm text-gray-700"
+        />
+      </div>
+
+      {/* Dropdowns */}
+      {['Status', 'Type', 'Bedrooms', 'Bathrooms'].map((label) => (
+        <div
+          key={label}
+          className="flex items-center border  px-1 py-2 text-sm text-gray-500 cursor-pointer min-w-[100px] justify-between"
+        >
+          {label}
+          <FaChevronDown className="ml-2 text-xs" />
+        </div>
+      ))}
+
+      {/* Advanced */}
+      <div className="flex items-center text-blue-600 text-sm cursor-pointer whitespace-nowrap border  px-2 py-2">
+        <FaCog className="mr-1 text-sm" />
+        <span>Advanced</span>
+      </div>
+
+      {/* Go Button */}
+      <button className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2  text-sm">
+        Go
+      </button>
+    </div>
+  );
+};
+
 export default function GridFullWidthPage() {
   return (
-    <main className="max-w-7xl mx-auto px-4 py-8">
+    <main className="max-w-6xl mx-auto px-4 py-8">
+      <SearchBar />
       <h1 className="text-2xl font-bold text-blue-900 mb-6">Grid Full Width</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {properties.map((property) => (
